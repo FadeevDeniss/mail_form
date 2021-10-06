@@ -1,0 +1,12 @@
+{% if latest_mail_list %}
+<center>
+    <h2>Feedback list</h2>
+    <ol type="1">
+    {% for m in latest_mail_list %}
+        <li><a href="/mail/{{ m.id }}/">{{ m.name }} {{ m.email }}</a></li>
+    {% endfor %}
+    </ol>
+{% else %}
+    <p>No mail are available.</p>
+{% endif %}
+</center>
