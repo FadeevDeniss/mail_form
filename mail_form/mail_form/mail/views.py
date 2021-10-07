@@ -30,8 +30,9 @@ def feedback(request):
 
 
 def thanks(request):
-
-    return render(request, 'Thanks.html')
+    mail_list = Mail.objects.order_by('-id')[:1]
+    context = {'mail_list': mail_list}  
+    return render(request, 'Thanks.html', context)
 
 
 def index(request):
