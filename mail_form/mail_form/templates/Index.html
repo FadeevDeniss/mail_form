@@ -1,12 +1,13 @@
-{% if latest_mail_list %}
-<center>
-    <h2>Feedback list</h2>
-    <ol type="1">
-    {% for m in latest_mail_list %}
-        <li><a href="/mail/{{ m.id }}/">{{ m.name }} {{ m.email }}</a></li>
-    {% endfor %}
-    </ol>
-{% else %}
-    <p>No mail are available.</p>
-{% endif %}
-</center>
+{% for obj in page_obj %}
+<p>{{ obj }}</p>
+{% endfor %}
+
+<nav>
+    <ul>
+        {% for p in page_obj.paginator.page_range %}
+        <li>
+            <a href="?page={{ p }}">{{ p }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</nav>

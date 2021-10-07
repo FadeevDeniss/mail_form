@@ -4,6 +4,7 @@ from mail.models import Mail
 from django.shortcuts import render
 from django.core.exceptions import ValidationError
 from django.template import loader
+from django.core.paginator import Paginator
 
 
 def feedback(request):
@@ -36,9 +37,11 @@ def thanks(request):
 
 
 def index(request):
-    latest_mail_list = Mail.objects.order_by('id')[:10]
-    context = {'latest_mail_list': latest_mail_list}
-    return render(request, 'Index.html', context)
+    mail_list = Mail.objects.all()
+    paginator = Paginator(mail_list, 10)
+    page_num = request.GET.get('page')
+    page_obj = paginator.get_page(page_num)
+    return render(request, 'Index.html', {'page_obj': page_obj})
 
 
 def get_mail(request, mail_id):
