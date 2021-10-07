@@ -10,7 +10,8 @@ class Credentials(forms.Form):
         empty_value='example@mail.com',
         )
     message_text = forms.CharField(
-        max_length=400,
+        max_length=10000,
+        label='Текст сообщения'
         )
     personal_data = forms.BooleanField(label='Согласие на обработку ПД')
 

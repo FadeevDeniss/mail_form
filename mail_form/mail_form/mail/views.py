@@ -18,7 +18,7 @@ def feedback(request):
                 email=email,
                 message_text=msg_text
             ).save()
-            return HttpResponseRedirect('Thanks/')
+            return HttpResponseRedirect('/Thanks/')
         else:
             raise ValidationError([
                 ValidationError(_('You must enter the value'), code='err_01')
@@ -30,6 +30,7 @@ def feedback(request):
 
 
 def thanks(request):
+
     return render(request, 'Thanks.html')
 
 
@@ -37,5 +38,10 @@ def index(request):
     latest_mail_list = Mail.objects.order_by('id')[:10]
     context = {'latest_mail_list': latest_mail_list}
     return render(request, 'Index.html', context)
+
+
+def get_mail(request, mail_id):
+    summary = "Summary of mail with ID %s."
+    return HttpResponse(summary % mail_id, 'Summary.html')
 
 
