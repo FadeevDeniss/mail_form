@@ -15,3 +15,5 @@ There are several methods:
 -index - this method handles the page with all objects form DB with 10 objects per page
 -get_mail - (it's not over yet) the template for getting the attributes of choosed object on the one page
 
+Project had been created in virtual environment
+To startup print "py manage.py runserver" in the command shell to start the server  
